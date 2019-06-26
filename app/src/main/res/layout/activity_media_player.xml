@@ -27,6 +27,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="140dp"
+        android:scaleType="center"
         android:visibility="gone"
         android:src="@drawable/ic_video_button" />
 
