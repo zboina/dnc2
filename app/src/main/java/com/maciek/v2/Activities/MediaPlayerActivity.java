@@ -310,6 +310,7 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return false;
     }
+
     int temp;
     boolean ispressed = false;
 
@@ -490,6 +491,11 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
         }
 
         if (mapVideo.get(index) != null) {
+            if (mapVideo.get(index).contains("KSFB")) {
+                mFloatingActionButton.setImageResource(R.mipmap.ic_ksfb);
+            } else {
+                mFloatingActionButton.setImageResource(R.drawable.ic_video_button);
+            }
             mFloatingActionButton.setVisibility(View.VISIBLE);
         } else {
             mFloatingActionButton.setVisibility(View.GONE);
@@ -510,6 +516,11 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
         mTextView.setText(index + ". " + mapTitle.get(index));
 
         if (mapVideo.get(index) != null) {
+            if (mapVideo.get(index).contains("KSFB")) {
+                mFloatingActionButton.setImageResource(R.mipmap.ic_ksfb);
+            } else {
+                mFloatingActionButton.setImageResource(R.drawable.ic_video_button);
+            }
             mFloatingActionButton.setVisibility(View.VISIBLE);
         } else {
             mFloatingActionButton.setVisibility(View.GONE);
@@ -537,6 +548,11 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
         mTextView.setText(index + ". " + mapTitle.get(index));
 
         if (mapVideo.get(index) != null) {
+            if (mapVideo.get(index).contains("KSFB")) {
+                mFloatingActionButton.setImageResource(R.mipmap.ic_ksfb);
+            } else {
+                mFloatingActionButton.setImageResource(R.drawable.ic_video_button);
+            }
             mFloatingActionButton.setVisibility(View.VISIBLE);
         } else {
             mFloatingActionButton.setVisibility(View.GONE);

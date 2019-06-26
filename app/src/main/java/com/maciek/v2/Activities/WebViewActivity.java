@@ -1,23 +1,23 @@
 package com.maciek.v2.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.maciek.v2.R;
 
-public class WebViewActivity extends AppCompatActivity {
-
-    private WebView webView;
+public class WebViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        webView = findViewById(R.id.webView1);
+        WebView webView = findViewById(R.id.webView1);
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -39,5 +39,15 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView.loadUrl(
                 "http://pomoc.dnc.x25.pl");
+
+        FloatingActionButton backButton = findViewById(R.id.back_floating);
+        backButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.back_floating) {
+            NavUtils.navigateUpFromSameTask(this);
+        }
     }
 }
