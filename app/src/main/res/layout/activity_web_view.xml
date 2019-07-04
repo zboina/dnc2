@@ -14,8 +14,10 @@
         android:id="@+id/back_floating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="140dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
         android:src="@drawable/ic_back" />
 
 </RelativeLayout>

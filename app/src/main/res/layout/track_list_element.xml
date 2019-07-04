@@ -28,7 +28,7 @@
                 android:id="@+id/list_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
+                android:fontFamily="Arial"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:layout_marginStart="2dp" />
