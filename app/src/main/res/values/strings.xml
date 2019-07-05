@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Droga Nowego Czlowieka</string>
+    <string name="app_name">DNC 2</string>
     <string name="tourist_path">Turysta</string>
     <string name="oaza_path">Oaza</string>
     <string name="home_church_path">Domowy kościół</string>
@@ -13,7 +13,7 @@
     <string name="download_content_button">Pobierz audio/video</string>
     <string name="title_activity_downloader">DownloaderActivity</string>
     <string name="download_text">
-        Witaj! \n\nZanim będziesz mógł korzystać z aplikacju pobierz materiały multimedialne do wszystkich ścieżek.\n\nPotrwa to w zależności od prędkości Twojego internetu od kilku do kilkunastu minut. Zajmą one na Twoim telefonie około 140 Mb.  \n\nKliknij przycisk POBIERZ.
+        Witaj! \n\nZanim będziesz mógł korzystać z aplikacju pobierz materiały multimedialne do wszystkich ścieżek - kliknij przycisk POBIERZ.\n\nPotrwa to w zależności od prędkości Twojego internetu od kilku do kilkunastu minut. Zajmą one na Twoim telefonie około 150 Mb.
     </string>
     <string name="update_text">
         Dostępna jest aktualizacja ścieżek! Aby pobrać nowe dane, kliknij AKTUALIZUJ

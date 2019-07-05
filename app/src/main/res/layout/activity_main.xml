@@ -87,33 +87,33 @@
         android:paddingBottom="20dp"
         >
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
+            android:id="@+id/updateLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
             android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:orientation="vertical"
             android:padding="16dp"
-            android:id="@+id/updateLinearLayout"
             android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hello_text"
                 android:layout_gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/white" />
+                android:text="@string/hello_text"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/update_text"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_marginBottom="55dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="55dp"
+                android:text="@string/update_text"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
 
             <LinearLayout
@@ -124,6 +124,19 @@
                 android:weightSum="2">
 
                 <Button
+                    android:id="@+id/accept_update_button"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="@string/update_button"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <Button
                     android:id="@+id/reject_update_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,17 +145,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/button"
                     android:text="@string/back_button"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/accept_update_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button"
-                    android:text="@string/update_button"
                     android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>
@@ -158,7 +160,7 @@
             android:background="@drawable/button"
             android:text="@string/tourist_button"
             android:textSize="18dp"
-            android:visibility="gone" />
+            android:visibility="visible" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
