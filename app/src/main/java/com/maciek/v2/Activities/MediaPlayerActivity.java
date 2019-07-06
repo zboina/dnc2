@@ -420,6 +420,9 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                ispressed = false;
+                start.setImageResource(R.drawable.ic_pause_circle);
+                start.setBackgroundColor(getResources().getColor(R.color.ziolny_ciemny_michala));
             }
         }
     }
