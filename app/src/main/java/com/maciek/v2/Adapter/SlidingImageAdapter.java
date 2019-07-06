@@ -114,6 +114,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
 
         int orientation = 0;
+        //int orientation =   ExifInterface.ORIENTATION_NORMAL;
         try {
             ExifInterface ei = new ExifInterface(currentPhotoPath);
             orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
