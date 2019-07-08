@@ -8,9 +8,11 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 
 import com.maciek.v2.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,13 +29,15 @@ import java.util.ArrayList;
 
 public class SlidingImageAdapter extends PagerAdapter {
     private ArrayList<String> IMAGES;
+    private SparseArray<String> mapCamera;
     private LayoutInflater inflater;
     private Context context;
 
 
-    public SlidingImageAdapter(Context context, ArrayList<String> IMAGES) {
+    public SlidingImageAdapter(Context context, ArrayList<String> IMAGES, SparseArray<String> mapCamera) {
         this.context = context;
         this.IMAGES = IMAGES;
+        this.mapCamera = mapCamera;
         inflater = LayoutInflater.from(context);
     }
 
@@ -55,25 +60,31 @@ public class SlidingImageAdapter extends PagerAdapter {
                 .findViewById(R.id.image);
 
         String stringUrl = IMAGES.get(position);
+        Bitmap bitmap = null;
 
-        if (stringUrl.contains("JPEG_")) {
-            setPic(imageView, stringUrl, view);
-        }
-
-//        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M){
-//            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.niemaaparatu);
-//            stringUrl = uri.toString();
-//        }
-
-        else {
-            Bitmap bitmap = null;
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M && mapCamera.get(position) != null && mapCamera.get(position).equals("1")) {
+            Uri uri = Uri.parse("android.resource://com.maciek.v2/raw/niemaaparatui");
             try {
-                bitmap = BitmapFactory.decodeFile(stringUrl);
-            } catch (Exception e) {
+                bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+                imageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            imageView.setImageBitmap(bitmap);
+        } else {
+            if (stringUrl.contains("JPEG_")) {
+                setPic(imageView, stringUrl, view);
+            } else {
+                try {
+                    bitmap = BitmapFactory.decodeFile(stringUrl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                imageView.setImageBitmap(bitmap);
+
+            }
+
         }
+
         view.addView(imageLayout, 0);
 
         return imageLayout;

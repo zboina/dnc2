@@ -145,7 +145,7 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
         viewPager = findViewById(R.id.pager);
         showList.setOnClickListener(this);
         // koniec Guziczków
-        slidingImageAdapter = new SlidingImageAdapter(MediaPlayerActivity.this, listOfImagesSorted);
+        slidingImageAdapter = new SlidingImageAdapter(MediaPlayerActivity.this, listOfImagesSorted, mapCamera);
         viewPager.setAdapter(slidingImageAdapter);
         start.setBackgroundColor(getResources().getColor(R.color.ziolny_ciemny_michala));
 
