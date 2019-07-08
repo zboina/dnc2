@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.util.DisplayMetrics;
@@ -57,7 +58,14 @@ public class SlidingImageAdapter extends PagerAdapter {
 
         if (stringUrl.contains("JPEG_")) {
             setPic(imageView, stringUrl, view);
-        } else {
+        }
+
+//        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M){
+//            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.niemaaparatu);
+//            stringUrl = uri.toString();
+//        }
+
+        else {
             Bitmap bitmap = null;
             try {
                 bitmap = BitmapFactory.decodeFile(stringUrl);

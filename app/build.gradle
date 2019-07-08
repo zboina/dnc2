@@ -6,9 +6,9 @@ android {
         applicationId "com.maciek.v2"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 28
+        versionCode 30
         multiDexEnabled true
-        versionName "2.0 beta 28"
+        versionName "2.0 beta 30"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
