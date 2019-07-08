@@ -153,7 +153,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
         if (cursor.moveToFirst()) {
             do {
                 String data = cursor.getString(cursor.getColumnIndex("AUDIO"));
-                String mUrl = "http://185.243.55.31/audio/" + data;
+                String mUrl = "http://assets.dnc.x25.pl/audio/" + data;
                 Intent intent = new Intent(this, DownloadService.class);
                 // add infos for the service which file to download and where to store
                 intent.putExtra(DownloadService.FILENAME, data);
@@ -171,7 +171,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
             do {
 
                 String data = cursor.getString(cursor.getColumnIndex("PICTURE"));
-                String mUrl = "http://185.243.55.31/foto/" + data;
+                String mUrl = "http://assets.dnc.x25.pl/foto/" + data;
                 Intent intent = new Intent(this, DownloadService.class);
                 // add infos for the service which file to download and where to store
                 intent.putExtra(DownloadService.FILENAME, data);
@@ -191,7 +191,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
                 if (data == null) {
                     data = "null";
                 }
-                String mUrl = "http://185.243.55.31/video/" + data;
+                String mUrl = "http://assets.dnc.x25.pl/video/" + data;
                 Intent intent = new Intent(this, DownloadService.class);
                 // add infos for the service which file to download and where to store
                 intent.putExtra(DownloadService.FILENAME, data);

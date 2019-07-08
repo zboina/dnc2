@@ -488,7 +488,9 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
 
 
         if (mapCamera.get(index) != null && mapCamera.get(index).equals("1")) {
-            lunchCamera.setVisibility(View.VISIBLE);
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP){
+                lunchCamera.setVisibility(View.VISIBLE);
+            }
         } else {
             lunchCamera.setVisibility(View.GONE);
         }
@@ -562,7 +564,10 @@ public class MediaPlayerActivity extends AppCompatActivity implements View.OnCli
         }
 
         if (mapCamera.get(index) != null && mapCamera.get(index).equals("1")) {
-            lunchCamera.setVisibility(View.VISIBLE);
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP){
+                lunchCamera.setVisibility(View.VISIBLE);
+            }
+
         } else {
             lunchCamera.setVisibility(View.GONE);
         }
