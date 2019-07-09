@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -287,7 +288,12 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
         if (receiver != null) {
             editor.putBoolean("przerwano", true);
             editor.apply();
-            unregisterReceiver(receiver);
+            try {
+                unregisterReceiver(receiver);
+            } catch (Exception e) {
+                Log.e("receiver", "nie bylo co stopowac");
+            }
+
         }
 
     }
@@ -298,7 +304,11 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
         if (receiver != null) {
             editor.putBoolean("przerwano", true);
             editor.apply();
-            unregisterReceiver(receiver);
+            try {
+                unregisterReceiver(receiver);
+            } catch (Exception e) {
+                Log.e("receiver", "nie bylo co stopowac");
+            }
         }
     }
 }

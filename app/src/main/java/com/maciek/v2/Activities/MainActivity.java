@@ -76,12 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         volleyGetRequest = new VolleyGetRequest(this, db);
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         int isSuccesfulMain = sharedPreferences.getInt(getString(R.string.was_download_succesfull), 0);
+        TuristListDbQuery turistListDbQuery = new TuristListDbQuery(db);
+        List<String> list = turistListDbQuery.getActiveAudio();
         if (isNetworkAvailable()) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = prefs.edit();
+
             if (prefs.getInt(LOCAL_DATABASE_VERSION, 0) < prefs.getInt(DATABASE_VERSION, 0)) {
-                TuristListDbQuery turistListDbQuery = new TuristListDbQuery(db);
-                List<String> list = turistListDbQuery.getActiveAudio();
+
+
                 volleyGetRequest.getActiveAudioFromServerTable(list, findViewById(android.R.id.content), this);
                 editor.putBoolean(SHOULD_UPDATE_POSITION_1, true);
                 editor.putBoolean(SHOULD_UPDATE_POSITION_2, true);
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editor.apply();
             }
             volleyGetRequest.insertCurrentDbVersionToSharedPreferences(this, DATABASE_VERSION);
-        } else if(!isNetworkAvailable() && isSuccesfulMain!=4) {
+        } else if (!isNetworkAvailable() && isSuccesfulMain != 4 && list.size() < 180) {
             TextView noInternetTextView = findViewById(R.id.text_view_no_internet);
             Button downloadButton = findViewById(R.id.launch_downloader_button);
             Button closeAppButton = findViewById(R.id.exit_app_button);
@@ -192,6 +195,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        verifyIfContentShouldBeDownloaded();
+    }
+
+    private void verifyIfContentShouldBeDownloaded() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         int isSuccesful = sharedPreferences.getInt(getString(R.string.was_download_succesfull), 0);
         if (isSuccesful == 4) {
