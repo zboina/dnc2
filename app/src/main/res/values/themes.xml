@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="YourApplicationTheme" parent="android:style/Theme.NoTitleBar">
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:buttonStyle">@style/button</item>
     </style>
+
     <style name="ApplicationThemeMedia" parent="android:style/Theme.NoTitleBar">
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:buttonStyle">@style/button_media</item>
     </style>
 </resources>

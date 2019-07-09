@@ -20,7 +20,6 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.maciek.v2.Activities.DownloaderActivity;
 import com.maciek.v2.DB.InsertPositionToList;
 import com.maciek.v2.DB.TuristListDbQuery;
 import com.maciek.v2.R;
@@ -32,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.maciek.v2.Activities.MainActivity.LOCAL_DATABASE_VERSION;
+import static com.maciek.v2.Activities.DownloaderActivity.LOCAL_DATABASE_VERSION;
 
 /**
  * Created by Geezy on 16.07.2018.
@@ -117,8 +116,6 @@ public class VolleyGetRequest {
 
                             if (typeId == 4) {
                                 loader.setVisibility(View.GONE);
-                                mContext.startActivity(new Intent(mContext, DownloaderActivity.class));
-
                             }
 
                         } catch (JSONException e) {
@@ -294,7 +291,6 @@ public class VolleyGetRequest {
                             }
                             Intent intent = new Intent();
                             intent.putExtra("startUpdate", true);
-                            mContext.startActivity(new Intent(mContext, DownloaderActivity.class));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

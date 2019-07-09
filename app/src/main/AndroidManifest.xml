@@ -25,18 +25,10 @@
         <activity
             android:name=".Activities.WebViewActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.MainActivity" />
         </activity>
         <activity
             android:name=".Activities.VideoPlayerActivity"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.TrackListActivity"
@@ -50,14 +42,15 @@
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait" />
-        <!--<activity-->
-            <!--android:name=".Activities.DownloaderActivity"-->
-            <!--android:screenOrientation="portrait" />-->
 
         <activity
             android:name=".Activities.DownloaderActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
         <service android:name=".notification.MyFirebaseMessagingService">
