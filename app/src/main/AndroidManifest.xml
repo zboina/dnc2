@@ -50,9 +50,15 @@
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name=".Activities.DownloaderActivity"-->
+            <!--android:screenOrientation="portrait" />-->
+
         <activity
             android:name=".Activities.DownloaderActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+
 
         <service android:name=".notification.MyFirebaseMessagingService">
             <intent-filter>

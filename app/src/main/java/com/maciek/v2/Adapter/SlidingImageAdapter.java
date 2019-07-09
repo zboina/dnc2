@@ -62,7 +62,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         String stringUrl = IMAGES.get(position);
         Bitmap bitmap = null;
 
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M && mapCamera.get(position) != null && mapCamera.get(position).equals("1")) {
+        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M && mapCamera.get(position) != null && mapCamera.get(position).equals("1")) {
             Uri uri = Uri.parse("android.resource://com.maciek.v2/raw/niemaaparatui");
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
