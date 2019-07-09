@@ -9,8 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -67,6 +67,13 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
             shouldDownload = intent.getBooleanExtra("startUpdate", false);
         } else {
             textView.setText(getString(R.string.no_internet_connection_downloader));
+        }
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("przerwano", false)) {
+            editor.putBoolean("przerwano", false);
+            editor.apply();
+            registerReceiver(receiver, new IntentFilter(
+                    DownloadService.NOTIFICATION));
         }
 
         if (shouldDownload) {
@@ -272,5 +279,26 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
     @Override
     public void onBackPressed() {
         Toast.makeText(this, getString(R.string.back_button_toast_on_downloader), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (receiver != null) {
+            editor.putBoolean("przerwano", true);
+            editor.apply();
+            unregisterReceiver(receiver);
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            editor.putBoolean("przerwano", true);
+            editor.apply();
+            unregisterReceiver(receiver);
+        }
     }
 }
