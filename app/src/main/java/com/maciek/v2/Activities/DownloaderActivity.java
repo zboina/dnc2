@@ -9,8 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -25,6 +25,7 @@ import com.maciek.v2.DB.TuristListDbHelper;
 import com.maciek.v2.DB.TuristListDbQuery;
 import com.maciek.v2.R;
 import com.maciek.v2.Utilities.DownloadService;
+import com.maciek.v2.Utilities.LoggerUtility;
 
 public class DownloaderActivity extends AppCompatActivity implements Response.Listener<byte[]>, Response.ErrorListener, View.OnClickListener {
 
@@ -35,6 +36,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
     private TuristListDbHelper turistListDbHelper;
     private SharedPreferences.Editor editor;
     private TuristListDbQuery turistListDbQuery;
+    private LoggerUtility loggerUtility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +52,14 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
         acceptButton.setOnClickListener(this);
         rejectButton.setOnClickListener(this);
         goToMainButton.setOnClickListener(this);
+        loggerUtility = new LoggerUtility(this);
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         db = turistListDbHelper.getReadableDatabase();
         turistListDbQuery = new TuristListDbQuery(db);
+
+        loggerUtility.appendLog("Odpalono DownloaderActivity OnCreate");
     }
 
 
@@ -62,6 +67,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
     protected void onResume() {
         super.onResume();
         boolean shouldDownload = true;
+        loggerUtility.appendLog("Odpalono DownloaderActivity OnResume");
         if (isNetworkAvailable()) {
             Intent intent = getIntent();
             shouldDownload = intent.getBooleanExtra("startUpdate", false);
@@ -77,6 +83,13 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loggerUtility.appendLog("odpalono DownloaderActivity OnDestroy");
+        unregisterReceiver(receiver);
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
     }
@@ -89,6 +102,7 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
             Bundle bundle = intent.getExtras();
             if (bundle != null) {
                 int resultCode = bundle.getInt(DownloadService.RESULT);
+                loggerUtility.appendLog("otrzymano pakiet z broadcast receiver z kodem: " + resultCode);
                 if (resultCode == RESULT_OK) {
                     progressBar.setProgress(bundle.getInt(DownloadService.COUNTER));
                     String message = bundle.getInt(DownloadService.COUNTER) + "/" + bundle.getInt(DownloadService.COUNTERMAX);
@@ -152,7 +166,9 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
         progressBar.setVisibility(View.VISIBLE);
         if (cursor.moveToFirst()) {
             do {
+
                 String data = cursor.getString(cursor.getColumnIndex("AUDIO"));
+                loggerUtility.appendLog("pobieram : " + data);
                 String mUrl = "http://assets.dnc.x25.pl/audio/" + data;
                 Intent intent = new Intent(this, DownloadService.class);
                 // add infos for the service which file to download and where to store

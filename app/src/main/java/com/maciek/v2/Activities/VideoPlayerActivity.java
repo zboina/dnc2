@@ -13,6 +13,7 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.maciek.v2.R;
+import com.maciek.v2.Utilities.LoggerUtility;
 
 import static com.maciek.v2.Activities.MediaPlayerActivity.POSITION;
 import static com.maciek.v2.Activities.MediaPlayerActivity.TRACK_PROGRESS;
@@ -27,6 +28,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     int trackProgress;
     private FloatingActionButton mFloatingButton;
     private VideoView videoView;
+    private LoggerUtility loggerUtility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         trackProgress = intent.getIntExtra(TRACK_PROGRESS, -1);
         videoView = findViewById(R.id.video_view);
         mFloatingButton = findViewById(R.id.launch_main_video_activity);
+        loggerUtility = new LoggerUtility(this);
+        loggerUtility.appendLog("odpalono videoPlayerActivity OnCreate");
         if (uriToLunch == null) {
             videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.introdnc);
             mFloatingButton.setVisibility(View.VISIBLE);
@@ -108,6 +112,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
+        loggerUtility.appendLog("odpalono videoPlayerActivity OnResume");
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {

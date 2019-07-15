@@ -22,6 +22,7 @@ import com.maciek.v2.DB.TouristListContract;
 import com.maciek.v2.DB.TuristListDbHelper;
 import com.maciek.v2.DB.TuristListDbQuery;
 import com.maciek.v2.R;
+import com.maciek.v2.Utilities.LoggerUtility;
 import com.maciek.v2.Utilities.VolleyGetRequest;
 
 import java.util.Arrays;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         helpButton.setOnClickListener(this);
         loader = findViewById(R.id.loader);
 
+        LoggerUtility loggerUtility = new LoggerUtility(this);
+        loggerUtility.appendLog("Odpalono MainActivity OnCreate");
+
         volleyGetRequest = new VolleyGetRequest(this, db);
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         int isSuccesfulMain = sharedPreferences.getInt(getString(R.string.was_download_succesfull), 0);
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editor.apply();
             }
             volleyGetRequest.insertCurrentDbVersionToSharedPreferences(this, DATABASE_VERSION);
-        } else if(!isNetworkAvailable() && isSuccesfulMain!=4) {
+        } else if (!isNetworkAvailable() && isSuccesfulMain != 4) {
             TextView noInternetTextView = findViewById(R.id.text_view_no_internet);
             Button downloadButton = findViewById(R.id.launch_downloader_button);
             Button closeAppButton = findViewById(R.id.exit_app_button);
@@ -137,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.button_tourist:
+
                 mIntent.putExtra(TITLE, "turysta-wstep.mp3");
                 mIntent.putExtra(TYPE_ID, "1");
                 startActivity(mIntent);
