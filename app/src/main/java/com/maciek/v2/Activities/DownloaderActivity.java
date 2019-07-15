@@ -86,7 +86,11 @@ public class DownloaderActivity extends AppCompatActivity implements Response.Li
     protected void onDestroy() {
         super.onDestroy();
         loggerUtility.appendLog("odpalono DownloaderActivity OnDestroy");
-        unregisterReceiver(receiver);
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
