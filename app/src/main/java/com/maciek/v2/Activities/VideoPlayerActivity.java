@@ -33,6 +33,12 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!isTaskRoot()
+                && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
+                && Intent.ACTION_MAIN.equals(getIntent().getAction())) {
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_video_player);
         Intent intent = getIntent();
         String uriToLunch = intent.getStringExtra("URI");
@@ -42,6 +48,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         mFloatingButton = findViewById(R.id.launch_main_video_activity);
         loggerUtility = new LoggerUtility(this);
         loggerUtility.appendLog("odpalono videoPlayerActivity OnCreate");
+
         if (uriToLunch == null) {
             videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.introdnc);
             mFloatingButton.setVisibility(View.VISIBLE);
