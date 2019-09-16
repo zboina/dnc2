@@ -1,9 +1,9 @@
-package com.maciek.v2.DB;
+package com.dnc.v2.DB;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.maciek.v2.Utilities.VolleyGetRequest;
+import com.dnc.v2.Utilities.VolleyGetRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;

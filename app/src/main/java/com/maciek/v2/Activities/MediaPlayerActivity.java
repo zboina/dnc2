@@ -1,4 +1,4 @@
-package com.maciek.v2.Activities;
+package com.dnc.v2.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,11 +22,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.maciek.v2.Adapter.SlidingImageAdapter;
-import com.maciek.v2.DB.TouristListContract;
-import com.maciek.v2.DB.TuristListDbHelper;
-import com.maciek.v2.DB.TuristListDbQuery;
-import com.maciek.v2.R;
+import com.dnc.v2.Adapter.SlidingImageAdapter;
+import com.dnc.v2.DB.TouristListContract;
+import com.dnc.v2.DB.TuristListDbHelper;
+import com.dnc.v2.DB.TuristListDbQuery;
+import com.dnc.v2.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,8 +36,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.maciek.v2.Activities.TrackListActivity.TITLE;
-import static com.maciek.v2.Activities.TrackListActivity.TYPE_ID;
+import static com.dnc.v2.Activities.TrackListActivity.TITLE;
+import static com.dnc.v2.Activities.TrackListActivity.TYPE_ID;
 
 public class MediaPlayerActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener, MediaPlayer.OnCompletionListener,
         MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnSeekCompleteListener,

@@ -1,4 +1,4 @@
-package com.maciek.v2.Utilities;
+package com.dnc.v2.Utilities;
 
 /*
  * A replacement for java.util.StringTokenizer

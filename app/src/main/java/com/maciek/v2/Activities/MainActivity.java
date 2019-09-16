@@ -1,4 +1,4 @@
-package com.maciek.v2.Activities;
+package com.dnc.v2.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,18 +18,18 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.maciek.v2.DB.TouristListContract;
-import com.maciek.v2.DB.TuristListDbHelper;
-import com.maciek.v2.DB.TuristListDbQuery;
-import com.maciek.v2.R;
-import com.maciek.v2.Utilities.VolleyGetRequest;
+import com.dnc.v2.DB.TouristListContract;
+import com.dnc.v2.DB.TuristListDbHelper;
+import com.dnc.v2.DB.TuristListDbQuery;
+import com.dnc.v2.R;
+import com.dnc.v2.Utilities.VolleyGetRequest;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.maciek.v2.Activities.MediaPlayerActivity.TRACK_PROGRESS;
-import static com.maciek.v2.Activities.TrackListActivity.TITLE;
-import static com.maciek.v2.Activities.TrackListActivity.TYPE_ID;
+import static com.dnc.v2.Activities.MediaPlayerActivity.TRACK_PROGRESS;
+import static com.dnc.v2.Activities.TrackListActivity.TITLE;
+import static com.dnc.v2.Activities.TrackListActivity.TYPE_ID;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener<byte[]>, Response.ErrorListener {

@@ -1,4 +1,4 @@
-package com.maciek.v2;
+package com.dnc.v2;
 
 import org.junit.Test;
 

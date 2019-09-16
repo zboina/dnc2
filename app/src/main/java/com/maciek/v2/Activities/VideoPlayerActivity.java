@@ -1,4 +1,4 @@
-package com.maciek.v2.Activities;
+package com.dnc.v2.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,12 +12,12 @@ import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import com.maciek.v2.R;
+import com.dnc.v2.R;
 
-import static com.maciek.v2.Activities.MediaPlayerActivity.POSITION;
-import static com.maciek.v2.Activities.MediaPlayerActivity.TRACK_PROGRESS;
-import static com.maciek.v2.Activities.TrackListActivity.TITLE;
-import static com.maciek.v2.Activities.TrackListActivity.TYPE_ID;
+import static com.dnc.v2.Activities.MediaPlayerActivity.POSITION;
+import static com.dnc.v2.Activities.MediaPlayerActivity.TRACK_PROGRESS;
+import static com.dnc.v2.Activities.TrackListActivity.TITLE;
+import static com.dnc.v2.Activities.TrackListActivity.TYPE_ID;
 
 public class VideoPlayerActivity extends AppCompatActivity implements View.OnClickListener {
 

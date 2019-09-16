@@ -1,4 +1,4 @@
-package com.maciek.v2;
+package com.dnc.v2;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

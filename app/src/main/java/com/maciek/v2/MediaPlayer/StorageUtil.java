@@ -1,4 +1,4 @@
-package com.maciek.v2.MediaPlayer;
+package com.dnc.v2.MediaPlayer;
 
 import android.content.Context;
 import android.content.SharedPreferences;

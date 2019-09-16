@@ -1,4 +1,4 @@
-package com.maciek.v2.Activities;
+package com.dnc.v2.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.maciek.v2.R;
+import com.dnc.v2.R;
 
 public class WebViewActivity extends AppCompatActivity implements View.OnClickListener {
 

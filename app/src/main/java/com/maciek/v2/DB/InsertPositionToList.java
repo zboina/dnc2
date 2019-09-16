@@ -1,4 +1,4 @@
-package com.maciek.v2.DB;
+package com.dnc.v2.DB;
 
 import android.content.ContentValues;
 import android.database.SQLException;

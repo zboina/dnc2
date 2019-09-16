@@ -1,4 +1,4 @@
-package com.maciek.v2.notification;
+package com.dnc.v2.notification;
 
 import android.util.Log;
 

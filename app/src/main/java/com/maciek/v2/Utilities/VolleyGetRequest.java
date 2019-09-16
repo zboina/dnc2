@@ -1,4 +1,4 @@
-package com.maciek.v2.Utilities;
+package com.dnc.v2.Utilities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +20,10 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.maciek.v2.Activities.DownloaderActivity;
-import com.maciek.v2.DB.InsertPositionToList;
-import com.maciek.v2.DB.TuristListDbQuery;
-import com.maciek.v2.R;
+import com.dnc.v2.Activities.DownloaderActivity;
+import com.dnc.v2.DB.InsertPositionToList;
+import com.dnc.v2.DB.TuristListDbQuery;
+import com.dnc.v2.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.maciek.v2.Activities.MainActivity.LOCAL_DATABASE_VERSION;
+import static com.dnc.v2.Activities.MainActivity.LOCAL_DATABASE_VERSION;
 
 /**
  * Created by Geezy on 16.07.2018.

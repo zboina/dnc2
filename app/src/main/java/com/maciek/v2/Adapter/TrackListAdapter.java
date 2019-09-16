@@ -1,4 +1,4 @@
-package com.maciek.v2.Adapter;
+package com.dnc.v2.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.maciek.v2.DB.TouristListContract;
-import com.maciek.v2.R;
+import com.dnc.v2.DB.TouristListContract;
+import com.dnc.v2.R;
 
 import java.io.IOException;
 

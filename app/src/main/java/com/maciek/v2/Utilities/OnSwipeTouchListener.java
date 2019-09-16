@@ -1,4 +1,4 @@
-package com.maciek.v2.Utilities;
+package com.dnc.v2.Utilities;
 
 import android.content.Context;
 import android.view.GestureDetector;

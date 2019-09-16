@@ -1,4 +1,4 @@
-package com.maciek.v2.Activities;
+package com.dnc.v2.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,15 +11,15 @@ import android.support.v7.widget.RecyclerView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.maciek.v2.Adapter.TrackListAdapter;
-import com.maciek.v2.DB.TuristListDbHelper;
-import com.maciek.v2.DB.TuristListDbQuery;
-import com.maciek.v2.R;
+import com.dnc.v2.Adapter.TrackListAdapter;
+import com.dnc.v2.DB.TuristListDbHelper;
+import com.dnc.v2.DB.TuristListDbQuery;
+import com.dnc.v2.R;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.maciek.v2.Activities.MediaPlayerActivity.POSITION;
+import static com.dnc.v2.Activities.MediaPlayerActivity.POSITION;
 
 
 public class TrackListActivity extends AppCompatActivity implements  TrackListAdapter.ListItemClickListener,  Response.Listener<byte[]>, Response.ErrorListener{

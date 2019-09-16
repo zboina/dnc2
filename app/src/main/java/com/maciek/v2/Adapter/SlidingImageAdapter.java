@@ -1,4 +1,4 @@
-package com.maciek.v2.Adapter;
+package com.dnc.v2.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.maciek.v2.R;
+import com.dnc.v2.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         Bitmap bitmap = null;
 
         if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP && mapCamera.get(position) != null && mapCamera.get(position).equals("1")) {
-            Uri uri = Uri.parse("android.resource://com.maciek.v2/raw/niemaaparatui");
+            Uri uri = Uri.parse("android.resource://com.dnc.v2/raw/niemaaparatui");
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
                 imageView.setImageBitmap(bitmap);
