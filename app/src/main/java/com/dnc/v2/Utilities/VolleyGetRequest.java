@@ -44,18 +44,16 @@ public class VolleyGetRequest {
     private SQLiteDatabase db;
     private RequestQueue mRequestQueue;
     private TuristListDbQuery turistListDbHelper;
-    private Cache cache;
-    private Network network;
 
     public VolleyGetRequest(Context context, SQLiteDatabase db) {
         this.context = context;
         this.db = db;
-        this.cache = new DiskBasedCache(context.getCacheDir(), 1024 * 1024);
-        this.network = new BasicNetwork(new HurlStack());
+        Cache cache = new DiskBasedCache(context.getCacheDir(), 1024 * 1024);
+        Network network = new BasicNetwork(new HurlStack());
         this.mRequestQueue = new RequestQueue(cache, network);
     }
 
-    public void getNameAndPosition(final List<Integer> typeIds, final ContentLoadingProgressBar loader, final Context mContext) {
+    public void getNameAndPosition(final List<Integer> typeIds, final Context mContext) {
         mRequestQueue.start();
         for (final int typeId : typeIds) {
             String url = "http://android.x25.pl/NowaDroga/GET/getTitleAndPictureById.php?typeId=" + typeId;
@@ -79,7 +77,7 @@ public class VolleyGetRequest {
                                     InsertPositionToList.insertAudiJpgDataByPos(db, audio, typeId, position, name, jpgname, isActive, canTake);
 
                                 }
-                                getVideoAndAudio(typeId, loader, mContext);
+                                getVideoAndAudio(typeId, mContext);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -96,7 +94,7 @@ public class VolleyGetRequest {
     }
 
 
-    private void getVideoAndAudio(final int typeId, final ContentLoadingProgressBar loader, final Context mContext) {
+    private void getVideoAndAudio(final int typeId, final Context mContext) {
         String url = "http://android.x25.pl/NowaDroga/GET/getVideoByTitle.php?typeId=" + typeId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -116,7 +114,6 @@ public class VolleyGetRequest {
                             }
 
                             if (typeId == 4) {
-                                loader.setVisibility(View.GONE);
                                 mContext.startActivity(new Intent(mContext, DownloaderActivity.class));
 
                             }

@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private VolleyGetRequest volleyGetRequest;
     private SQLiteDatabase db;
     private long lastClickTime = 0;
-    private ContentLoadingProgressBar loader;
 
     public static String DATABASE_VERSION = "DATABASE_VERSION";
     public static String LOCAL_DATABASE_VERSION = "LOCAL_DATABASE_VERSION";
@@ -71,37 +70,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         touristButton.setOnClickListener(this);
         homeChurchButton.setOnClickListener(this);
         helpButton.setOnClickListener(this);
-        loader = findViewById(R.id.loader);
 
         volleyGetRequest = new VolleyGetRequest(this, db);
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         int isSuccesfulMain = sharedPreferences.getInt(getString(R.string.was_download_succesfull), 0);
         if (isNetworkAvailable()) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = prefs.edit();
-            if (prefs.getInt(LOCAL_DATABASE_VERSION, 0) < prefs.getInt(DATABASE_VERSION, 0)) {
-                TuristListDbQuery turistListDbQuery = new TuristListDbQuery(db);
-                List<String> list = turistListDbQuery.getActiveAudio();
-                volleyGetRequest.getActiveAudioFromServerTable(list, findViewById(android.R.id.content), this);
-                editor.putBoolean(SHOULD_UPDATE_POSITION_1, true);
-                editor.putBoolean(SHOULD_UPDATE_POSITION_2, true);
-                editor.putBoolean(SHOULD_UPDATE_POSITION_3, true);
-                editor.putBoolean(SHOULD_UPDATE_POSITION_4, true);
-                editor.apply();
-            }
-            volleyGetRequest.insertCurrentDbVersionToSharedPreferences(this, DATABASE_VERSION);
-        } else if(!isNetworkAvailable() && isSuccesfulMain!=4) {
-            TextView noInternetTextView = findViewById(R.id.text_view_no_internet);
-            Button downloadButton = findViewById(R.id.launch_downloader_button);
-            Button closeAppButton = findViewById(R.id.exit_app_button);
-            downloadButton.setOnClickListener(this);
-            closeAppButton.setOnClickListener(this);
-            noInternetTextView.setVisibility(View.VISIBLE);
-            downloadButton.setVisibility(View.VISIBLE);
-            closeAppButton.setVisibility(View.VISIBLE);
+            checkForUpdate();
+        } else if (!isNetworkAvailable() && isSuccesfulMain != 4) {
+            downloadInitialContent();
         }
 
 
+    }
+
+    private void downloadInitialContent() {
+        TextView noInternetTextView = findViewById(R.id.text_view_no_internet);
+        Button downloadButton = findViewById(R.id.launch_downloader_button);
+        Button closeAppButton = findViewById(R.id.exit_app_button);
+        downloadButton.setOnClickListener(this);
+        closeAppButton.setOnClickListener(this);
+        noInternetTextView.setVisibility(View.VISIBLE);
+        downloadButton.setVisibility(View.VISIBLE);
+        closeAppButton.setVisibility(View.VISIBLE);
+    }
+
+    private void checkForUpdate() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        if (prefs.getInt(LOCAL_DATABASE_VERSION, 0) < prefs.getInt(DATABASE_VERSION, 0)) {
+            TuristListDbQuery turistListDbQuery = new TuristListDbQuery(db);
+            List<String> list = turistListDbQuery.getActiveAudio();
+            volleyGetRequest.getActiveAudioFromServerTable(list, findViewById(android.R.id.content), this);
+            editor.putBoolean(SHOULD_UPDATE_POSITION_1, true);
+            editor.putBoolean(SHOULD_UPDATE_POSITION_2, true);
+            editor.putBoolean(SHOULD_UPDATE_POSITION_3, true);
+            editor.putBoolean(SHOULD_UPDATE_POSITION_4, true);
+            editor.apply();
+        }
+        volleyGetRequest.insertCurrentDbVersionToSharedPreferences(this, DATABASE_VERSION);
     }
 
     private boolean isNetworkAvailable() {
@@ -114,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void startDownloading() {
         volleyGetRequest.insertCurrentDbVersionToSharedPreferences(this, LOCAL_DATABASE_VERSION);
         reCreatedb();
-        loader.setVisibility(View.VISIBLE);
-        volleyGetRequest.getNameAndPosition(Arrays.asList(1, 2, 3, 4), loader, this);
+        volleyGetRequest.getNameAndPosition(Arrays.asList(1, 2, 3, 4), this);
     }
 
 
@@ -195,25 +200,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.was_download_succesfull), Context.MODE_PRIVATE);
         int isSuccesful = sharedPreferences.getInt(getString(R.string.was_download_succesfull), 0);
         if (isSuccesful == 4) {
-            touristButton.setVisibility(View.VISIBLE);
-            homeChurchButton.setVisibility(View.VISIBLE);
-            oazaYouthButton.setVisibility(View.VISIBLE);
-            advancedButton.setVisibility(View.VISIBLE);
-            helpButton.setVisibility(View.VISIBLE);
-
+            showKeyForSucessfullConent();
         } else {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_1, true);
-            editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_2, true);
-            editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_3, true);
-            editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_4, true);
-            editor.apply();
+            updateConentOnResume();
             if (isNetworkAvailable()) {
                 startDownloading();
             }
 
         }
+    }
+
+    private void updateConentOnResume() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_1, true);
+        editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_2, true);
+        editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_3, true);
+        editor.putBoolean(SHOULD_UPDATE_AFTER_FIRST_DOWNLOAD_4, true);
+        editor.apply();
+    }
+
+    private void showKeyForSucessfullConent() {
+        touristButton.setVisibility(View.VISIBLE);
+        homeChurchButton.setVisibility(View.VISIBLE);
+        oazaYouthButton.setVisibility(View.VISIBLE);
+        advancedButton.setVisibility(View.VISIBLE);
+        helpButton.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -26,7 +26,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
     int position;
     int trackProgress;
     private FloatingActionButton mFloatingButton;
-    private VideoView videoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         String uriToLunch = intent.getStringExtra("URI");
         position = intent.getIntExtra(POSITION, -1);
         trackProgress = intent.getIntExtra(TRACK_PROGRESS, -1);
-        videoView = findViewById(R.id.video_view);
+        VideoView videoView = findViewById(R.id.video_view);
         mFloatingButton = findViewById(R.id.launch_main_video_activity);
         if (uriToLunch == null) {
             videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.introdnc);
@@ -119,5 +118,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+//        startActivity(new Intent(this, MainActivity.class));
     }
 }

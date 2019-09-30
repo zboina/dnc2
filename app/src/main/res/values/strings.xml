@@ -40,5 +40,6 @@
     <string name="back_button_toast_on_downloader">Pobieranie, proszę czekać...</string>
     <string name="msg_token_fmt">123124</string>
     <string name="default_notification_channel_id">defaultNotificationChannelId</string>
+    <string name="title_activity_main2">Main2Activity</string>
     <!--TODO dodać wartości dla wszytkich referencji-->
 </resources>
